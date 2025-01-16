@@ -5,7 +5,7 @@ using HarmonyLib;
 using Scripts.UserData;
 
 namespace TaikoStar.Patches;
-
+//I don't know what this is for so I'm just keeping this here
 [HarmonyPatch]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public class CustomFumenLoader {

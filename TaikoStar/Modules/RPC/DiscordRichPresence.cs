@@ -11,10 +11,10 @@ public class DiscordRichPresence {
 
     private DiscordRpcClient rpc;
     
-    private const string ClientId = "1309050701800017970";
+    private const string ClientId = "1329480095999590450"; //idk how discord rpc works exactly so you may need to adjust this to your own client id lmao
     
     public readonly RichPresence RichPresence = new() {
-        Details = "初期化中...",
+        Details = "Initializing...",
         State = "",
         Timestamps = Timestamps.Now,
         Assets = new DiscordRPC.Assets()

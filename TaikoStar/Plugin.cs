@@ -15,9 +15,10 @@ public class Plugin : BasePlugin {
         Log = base.Log;
         Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         
-        Harmony.CreateAndPatchAll(typeof(ReplaceVersionText));
-        Harmony.CreateAndPatchAll(typeof(SkipSplashScreen));
-        Harmony.CreateAndPatchAll(typeof(SkipCoinAndReward));
+        //removed features as these mods already exist
+        //Harmony.CreateAndPatchAll(typeof(ReplaceVersionText));
+        //Harmony.CreateAndPatchAll(typeof(SkipSplashScreen));
+        //Harmony.CreateAndPatchAll(typeof(SkipCoinAndReward));
         
         // Discord Rich Presence
         DiscordRichPresence.Instance.Initialize();

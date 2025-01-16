@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using HarmonyLib;
 
 namespace TaikoStar.Patches;
-
+//I don't know what this is for so I'm just keeping this here
 [HarmonyPatch]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public class SongInfoPlayerPatcher {
