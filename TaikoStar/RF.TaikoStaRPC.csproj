@@ -12,26 +12,29 @@
       https://nuget.bepinex.dev/v3/index.json;
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
-	  <RootNamespace>TaikoStar</RootNamespace>
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RootNamespace>TaikoStar</RootNamespace>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	  <!-- Define the game path variable -->
-	  <!--!!!! IF YOU ARE COMPILING THIS MOD FOR YOURSELF, CHANGE THIS IF ITS IN AN UNUSUAL LOCATION !!!!-->
 	  <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Taiko no Tatsujin Rhythm Festival</GamePath>
   </PropertyGroup>
-
+  
   <ItemGroup>
-	  <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
-	  <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
-	  <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	  <!-- Reference DLLs using GamePath variable -->
-	  <Reference Include="$(GamePath)\BepInEx\interop\*.dll" Private="false" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\Taiko no Tatsujin Rhythm Festival\BepInEx\interop\*.dll" Private="false" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-	  <!-- Use GamePath variable in post-build events -->
-	  <Exec Command="copy /B /Y &quot;bin\Debug\net6.0\TaikoStaRPC.dll&quot; &quot;$(GamePath)\BepInEx\plugins\TaikoStar\TaikoStaRPC.dll&quot;" />
-	  <Exec Command="&quot;$(GamePath)\Taiko no Tatsujin Rhythm Festival.exe&quot;" />
-  </Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<!-- Create the target folder if it doesn't exist -->
+		<Exec Command="if not exist &quot;$(GamePath)\BepInEx\plugins\RF.TaikoStaRPC&quot; mkdir &quot;$(GamePath)\BepInEx\plugins\RF.TaikoStaRPC&quot;" />
+
+		<!-- Copy all DLL files from the output folder to the target plugin folder -->
+		<Exec Command="xcopy /Y /Q /R /D /I &quot;bin\Debug\net6.0\*.dll&quot; &quot;$(GamePath)\BepInEx\plugins\RF.TaikoStaRPC\&quot;" />
+
+		<!-- Run the game executable -->
+		<Exec Command="&quot;$(GamePath)\Taiko no Tatsujin Rhythm Festival.exe&quot;" />
+	</Target>
 
 </Project>
