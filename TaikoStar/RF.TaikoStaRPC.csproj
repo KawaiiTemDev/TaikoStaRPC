@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>RF.TaikoStaRPC</AssemblyName>
+    <Product>RF.TaikoStaRPC</Product>
+    <Version>0.1.0-alpha</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+	  <RootNamespace>TaikoStar</RootNamespace>
+	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	  <!-- Define the game path variable -->
+	  <!--!!!! IF YOU ARE COMPILING THIS MOD FOR YOURSELF, CHANGE THIS IF ITS IN AN UNUSUAL LOCATION !!!!-->
+	  <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Taiko no Tatsujin Rhythm Festival</GamePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+	  <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+	  <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <!-- Reference DLLs using GamePath variable -->
+	  <Reference Include="$(GamePath)\BepInEx\interop\*.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <!-- Use GamePath variable in post-build events -->
+	  <Exec Command="copy /B /Y &quot;bin\Debug\net6.0\TaikoStaRPC.dll&quot; &quot;$(GamePath)\BepInEx\plugins\TaikoStar\TaikoStaRPC.dll&quot;" />
+	  <Exec Command="&quot;$(GamePath)\Taiko no Tatsujin Rhythm Festival.exe&quot;" />
+  </Target>
+
+</Project>
