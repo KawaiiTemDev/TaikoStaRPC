@@ -1,5 +1,6 @@
 # TaikoStaRPC
- <a href="taikomodmanager:https://github.com/KawaiiTemDev/TaikoStaRPC"> <img src="Resources/InstallButton.png" alt="One-click Install using the Taiko Mod Manager" width="256"/> </a>
+
+ <a href="https://shorturl.at/s1gHM"> <img src="Resources/InstallButton.png" alt="One-click Install using the Taiko Mod Manager" width="256"/> </a>
 
  
 This is a mod for Taiko no Tatsujin: Rhythm Festival that adds Discord RPC.
